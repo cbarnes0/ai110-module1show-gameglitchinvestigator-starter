@@ -15,7 +15,7 @@ difficulty = st.sidebar.selectbox(
     index=1,
 )
 
-# FIX: Ranges updated to reflect difficulty better
+# FIX: Ranges updated to reflect difficulty better, using Claude
 attempt_limit_map = {
     "Easy": 8,
     "Normal": 6,
@@ -31,7 +31,7 @@ st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
-# FIX: was initialized to 1, causing attempt count to appear 1 higher than actual
+# FIX: was initialized to 1, causing attempt count to appear 1 higher than actual, using Claude
 if "attempts" not in st.session_state:
     st.session_state.attempts = 0
 
@@ -46,7 +46,7 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
-# FIX: 1, 100 replaced with dynamic values low and high
+# FIX: 1, 100 replaced with dynamic values low and high, using Claude
 st.info(
     f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
@@ -72,7 +72,7 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
-# FIX: status and history were not reset, leaving game stuck in won/lost state with stale history
+# FIX: status and history were not reset, leaving game stuck in won/lost state with stale history, using Claude
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(low, high)
@@ -99,7 +99,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
-        # FIX: secret was cast to a string on even attempts, causing incorrect string-based comparisons
+        # FIX: secret was cast to a string on even attempts, causing incorrect string-based comparisons, using Claude
         outcome, message = check_guess(guess_int, st.session_state.secret)
 
         if show_hint:
