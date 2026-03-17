@@ -1,6 +1,7 @@
 import random
 import streamlit as st
 
+# Difficulties were updated to make more sense. (Hard/Normal range swapped)
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
@@ -33,6 +34,7 @@ def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
 
+    # We needed to correct the text displayed, the responses were flipped
     try:
         if guess > secret:
             return "Too High", "📉 Go LOWER!"
@@ -77,6 +79,7 @@ difficulty = st.sidebar.selectbox(
     index=1,
 )
 
+# Ranges updated to reflect difficulty better
 attempt_limit_map = {
     "Easy": 8,
     "Normal": 6,
@@ -106,6 +109,7 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
+# 1, 100 replaced with dynamic values low and high
 st.info(
     f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
