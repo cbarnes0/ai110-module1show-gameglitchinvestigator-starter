@@ -26,12 +26,34 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
+
+A number guessing game where the player tries to guess a randomly generated secret number within a limited number of attempts. The difficulty setting controls the number range and attempts allowed. Hints guide the player higher or lower after each guess.
+
 - [ ] Detail which bugs you found.
+
+- Hints were inverted
+- The "New Game" button didn't reset the game status or history after a win or loss, leaving the game stuck
+- The difficulty ranges didn't match their names 
+- The attempt counter was initialized to 1 instead of 0, causing the displayed count to always be off by one
+- The secret number range and the info banner both used hardcoded 1–100 instead of the difficulty's actual range
+- The guess history in the debug panel didn't update until the next interaction
+- Secret reset when interacting with the page
+
 - [ ] Explain what fixes you applied.
+
+- Swapped the "Go HIGHER!" / "Go LOWER!" hint messages
+- Added `status` and `history` resets to the "New Game" button handler
+- Corrected difficulty ranges and attempt limits to scale properly with difficulty
+- Initialized `attempts` to `0` and reset to `0` on new game
+- Replaced hardcoded `1` and `100` with dynamic `low` and `high`
+- Moved the debug expander below the submit handler so history updates immediately
+- Used `st.empty()` as a placeholder for the info banner so attempts left updates correctly on the same run as a submission
+- Refactored all logic functions from `app.py` into `logic_utils.py` and added automated tests with `pytest`
 
 ## 📸 Demo
 
 - [ ] [Insert a screenshot of your fixed, winning game here]
+![winning game](image.png)
 
 ## 🚀 Stretch Features
 
