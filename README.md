@@ -49,6 +49,7 @@ A number guessing game where the player tries to guess a randomly generated secr
 - Moved the debug expander below the submit handler so history updates immediately
 - Used `st.empty()` as a placeholder for the info banner so attempts left updates correctly on the same run as a submission
 - Refactored all logic functions from `app.py` into `logic_utils.py` and added automated tests with `pytest`
+- NOTE: i needed to add pytest.ini to get pytest to properly run
 
 ## 📸 Demo
 
